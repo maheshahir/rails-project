@@ -1,9 +1,21 @@
 
 <script>
+
 $(document).ready(function() {
 $('#myCarousel').carousel({
     interval: 4000
 });
+
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+  var recipient = button.data('whatever'); // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this);
+  modal.find('.modal-title').text('Photos of your friends @' + recipient);
+  //modal.find('.modal-body input').val(recipient)
+});
+
 
 // handles the carousel thumbnails
 $('[id^=carousel-selector-]').click( function(){
@@ -29,7 +41,7 @@ $('#myCarousel').on('slid', function (e) {
   $( function() {
     $( "#slider-range-min" ).slider({
       range: "min",
-      value: 5000,
+      value: 35000,
       min: 1000,
       max: 40000,
       slide: function( event, ui ) {
@@ -56,6 +68,12 @@ $('#myCarousel').on('slid', function (e) {
   $( function() {
     $( "#speed" ).selectmenu();
   } );
+
+  function loadpics()
+  {
+
+    $('#slider').show();
+  }
   </script>
 <div class="panel panel-default"  style="padding:20px;">
 <p>
@@ -66,50 +84,33 @@ $('#myCarousel').on('slid', function (e) {
 <div id="slider-range-min"></div>
 
 
-
-</div>
-  
-  <div class="row panel">
-  <div class="col-md-6">
-<%= image_tag("goa_main.jpg" , :class => 'img-responsive'  ) %>
-  </div>
-<div class="col-md-6">
-<a onclick="$('#slider').show();" class="btn btn-primary btn primary"> View Friends Pictures </a>
-</div>
-  </div>
-
-    <!-- main slider carousel -->
-        <div class="col-md-12 panel" style="display:none" id="slider">
-            <a onclick="$('#slider').hide();" class="btn pull-right"> x </a>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+      <div class="col-md-12 panel" id="slider">
  
                 <div class="col-md-12" id="carousel-bounding-box">
                     <div id="myCarousel" class="carousel slide">
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
-                            <div class="active item" data-slide-number="0">
-                                <img src="http://placehold.it/1200x480&amp;text=one" class="img-responsive">
+                            <div id="big1" class="active item" data-slide-number="0">
+                                <img src="/assets/g1.jpg" class="img-responsive">
                             </div>
-                            <div class="item" data-slide-number="1">
-                              <img src="http://placehold.it/1200x480/888/FFF" class="img-responsive">
+                            <div id="big2" class="item" data-slide-number="1">
+                                <img src="/assets/g2.jpg" class="img-responsive">
                             </div>
-                            <div class="item" data-slide-number="2">
-                                <img src="http://placehold.it/1200x480&amp;text=three" class="img-responsive">
+                            <div id="big3" class="item" data-slide-number="2">
+                                <img src="/assets/g3.jpg" class="img-responsive">
                             </div>
-                            <div class="item" data-slide-number="3">
-                                <img src="http://placehold.it/1200x480&amp;text=four" class="img-responsive">
+                            <div id="big4" class="item" data-slide-number="3">
+                                <img src="/assets/g4.jpg" class="img-responsive">
                             </div>
-                            <div class="item" data-slide-number="4">
-                                <img src="http://placehold.it/1200x480&amp;text=five" class="img-responsive">
-                            </div>
-                            <div class="item" data-slide-number="5">
-                                <img src="http://placehold.it/1200x480&amp;text=six" class="img-responsive">
-                            </div>
-                            <div class="item" data-slide-number="6">
-                                <img src="http://placehold.it/1200x480&amp;text=seven" class="img-responsive">
-                            </div>
-                            <div class="item" data-slide-number="7">
-                                <img src="http://placehold.it/1200x480&amp;text=eight" class="img-responsive">
-                            </div>
+                          
                         </div>
                         <!-- main slider carousel nav controls --> <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
 
@@ -123,34 +124,153 @@ $('#myCarousel').on('slid', function (e) {
         <center>
           <ul class="list-inline">
           <li> <a id="carousel-selector-0" class="selected">
-            <img src="http://placehold.it/80x60&amp;text=one" class="img-responsive">
+            <img style="width:80px;height:60px;" src="/assets/g1.jpg" class="img-responsive">
           </a></li>
           <li> <a id="carousel-selector-1">
-            <img src="http://placehold.it/80x60&amp;text=two" class="img-responsive">
+            <img style="width:80px;height:60px;" src="/assets/g2.jpg" class="img-responsive">
           </a></li>
           <li> <a id="carousel-selector-2">
-            <img src="http://placehold.it/80x60&amp;text=three" class="img-responsive">
+            <img style="width:80px;height:60px;" src="/assets/g3.jpg" class="img-responsive">
           </a></li>
           <li> <a id="carousel-selector-3">
-            <img src="http://placehold.it/80x60&amp;text=four" class="img-responsive">
+            <img style="width:80px;height:60px;" src="/assets/g4.jpg" class="img-responsive">
           </a></li>
-                <li> <a id="carousel-selector-4">
-            <img src="http://placehold.it/80x60&amp;text=five" class="img-responsive">
-          </a></li>
-          <li> <a id="carousel-selector-5">
-            <img src="http://placehold.it/80x60&amp;text=six" class="img-responsive">
-          </a></li>
-          <li> <a id="carousel-selector-6">
-            <img src="http://placehold.it/80x60&amp;text=seven" class="img-responsive">
-          </a></li>
-          <li> <a id="carousel-selector-7">
-            <img src="http://placehold.it/80x60&amp;text=eight" class="img-responsive">
-          </a></li>
+               
             </ul></center>
         
     </div>
 
         </div>
-        </div>
-    <!--/main slider carousel-->
+          <!--/main slider carousel-->
 
+
+        
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Plan this trip!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+  <div class="panel">
+  
+<div class="row">
+  <div class="col-md-6">
+<%= image_tag("goa_main.jpg" , :class => 'img-responsive'  ) %>
+  </div>
+<div class="col-md-6" style="padding-right:30px;">
+<h3> Goa (2N) Trip  </h3>
+The trip has XYZ amount. Amount of time required <br/>
+Flight Included in expenses or not <br/>
+More details about the trip <br/>
+<br/>
+<img class="img-cricle" src="/assets/friends/1.jpg">
+<img class="img-cricle" src="/assets/friends/2.jpg">
+<img class="img-cricle" src="/assets/friends/3.jpg">
+and 43 other friends have been to goa.  <br/>
+
+<a  data-toggle="modal" data-target="#exampleModal" data-whatever="Goa">Click Here to view your photos of your friends at this location</a>
+<button class="btn btn-sucess btn-large pull-right">Plan Trip</button>
+</div>
+  </div>
+
+<br/>
+<div class="row">
+  <div class="col-md-6">
+<%= image_tag("sg_main.jpg" , :class => 'img-responsive'  ) %>
+  </div>
+<div class="col-md-6" style="padding-right:30px;">
+<h3> Singapore (5N) Trip  </h3>
+The trip has XYZ amount. Amount of time required <br/>
+Flight Included in expenses or not <br/>
+More details about the trip <br/>
+<br/>
+<img class="img-cricle" src="/assets/friends/4.jpg">
+<img class="img-cricle" src="/assets/friends/5.jpg">
+<img class="img-cricle" src="/assets/friends/6.jpg">
+and 2 other friends have been to singapore.  <br/>
+
+<a  data-toggle="modal" data-target="#examplesg" data-whatever="Goa">Click Here to view your photos of your friends at this location</a>
+<button class="btn btn-sucess btn-large pull-right">Plan Trip</button>
+
+</div>
+  </div>
+
+</div>
+    <!-- main slider carousel -->
+        <div class="modal fade" id="examplesg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+      <div class="col-md-12 panel" id="slider">
+ 
+                <div class="col-md-12" id="carousel-bounding-box">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- main slider carousel items -->
+                        <div class="carousel-inner">
+                            <div id="big1" class="active item" data-slide-number="0">
+                                <img src="/assets/s1.jpg" class="img-responsive">
+                            </div>
+                            <div id="big2" class="item" data-slide-number="1">
+                                <img src="/assets/s2.jpg" class="img-responsive">
+                            </div>
+                            <div id="big3" class="item" data-slide-number="2">
+                                <img src="/assets/s3.jpg" class="img-responsive">
+                            </div>
+                            <div id="big4" class="item" data-slide-number="3">
+                                <img src="/assets/s4.jpg" class="img-responsive">
+                            </div>
+                          
+                        </div>
+                        <!-- main slider carousel nav controls --> <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+
+                        <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+                    </div>
+                </div>
+        <br/><br/>
+                <div class="col-md-12" id="slider-thumbs">
+        
+            <!-- thumb navigation carousel items -->
+        <center>
+          <ul class="list-inline">
+          <li> <a id="carousel-selector-0" class="selected">
+            <img style="width:80px;height:60px;" src="/assets/s1.jpg" class="img-responsive">
+          </a></li>
+          <li> <a id="carousel-selector-1">
+            <img style="width:80px;height:60px;" src="/assets/s2.jpg" class="img-responsive">
+          </a></li>
+          <li> <a id="carousel-selector-2">
+            <img style="width:80px;height:60px;" src="/assets/s3.jpg" class="img-responsive">
+          </a></li>
+          <li> <a id="carousel-selector-3">
+            <img style="width:80px;height:60px;" src="/assets/s4.jpg" class="img-responsive">
+          </a></li>
+               
+            </ul></center>
+        
+    </div>
+
+        </div>
+          <!--/main slider carousel-->
+
+
+        
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Plan this trip!</button>
+      </div>
+    </div>
+  </div>
+</div>
